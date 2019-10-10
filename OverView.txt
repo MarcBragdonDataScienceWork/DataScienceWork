@@ -1,0 +1,12 @@
+Marc Bragdon
+Phone Number : 7819745366
+mabragdo@syr.edu
+marc.bragdon@gmail.com
+
+Papers : Contains the three papers for the projects mentioned in the portfolio.
+
+RentTheRunway : Contains the code and images but not the data (too large) for the rent the runways project done for Data Analysis
+
+Sarcasm : Contains the code and images but not the data for my Detecting Sarcasm project done as a final project for Text Mining
+
+SignLanguageReader : Contains the code, images, and the model for my webcam enabled sign language detection application and the code to produce the model (currently trained for the alphabet only). 
