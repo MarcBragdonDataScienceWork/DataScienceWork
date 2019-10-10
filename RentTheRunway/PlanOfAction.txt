@@ -1,0 +1,10 @@
+Association Rule Mining : Try to figure out if repeat customers could be used to make associative rules. Results not really usable, but done.
+Decision Tree : Classifying Rented for based on {factors} 
+
+KNN -> 
+SVM
+Random Forest
+NaiveBayes -> Rated for and occasion What should customers use rent the runway for
+Kmeans Clustering -> Customer sizes and shapes 
+Text Mining 
+
