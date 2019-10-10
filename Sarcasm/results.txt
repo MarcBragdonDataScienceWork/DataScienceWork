@@ -1,0 +1,317 @@
+[nltk_data] Downloading package punkt to /home/marc/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package stopwords to /home/marc/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package wordnet to /home/marc/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+2019-06-08 22:20:20,975 - INFO - analysis_final - Reading 100.0 percent of the data.
+2019-06-08 22:20:25,888 - INFO - analysis_final - Data Size Read : 1010773
+2019-06-08 22:20:25,888 - INFO - analysis_final - Dropping NAs
+2019-06-08 22:20:26,407 - INFO - analysis_final - Size of Data after Dropping Nas is : 1010773
+2019-06-08 22:20:26,414 - INFO - analysis_final - Average Sentiment Shift : 0.2698177417678014
+2019-06-08 22:20:26,414 - INFO - analysis_final - Data Size : 1010773
+2019-06-08 22:20:26,414 - INFO - analysis_final - Taking only data with sentiment shift above 0.9
+2019-06-08 22:20:26,426 - INFO - analysis_final - Size of Higher Sentiment Shift : 36919
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 36919/36919 [00:00<00:00, 86626.19it/s]
+analysis_final.py:49: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  data['token_comment'] = data['comment'].progress_apply(text_process.tokenize_text, n_grams=1)
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 36919/36919 [00:00<00:00, 37035.34it/s]
+analysis_final.py:50: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  data['token_comment'] = data['token_comment'].progress_apply(text_process.remove_punctuation)
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 36919/36919 [00:00<00:00, 201355.87it/s]
+analysis_final.py:51: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  data['token_comment'] = data['token_comment'].progress_apply(text_process.make_lower_case)
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 36919/36919 [00:05<00:00, 6521.87it/s]
+analysis_final.py:52: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  data['token_comment'] = data['token_comment'].progress_apply(text_process.remove_stop_words)
+2019-06-08 22:20:34,102 - INFO - analysis_final - Flattening Clean Data
+2019-06-08 22:20:34,121 - INFO - analysis_final - Running Vectorizer on Data
+2019-06-08 22:20:34,477 - INFO - analysis_final - Vector Shape is (36919, 4935).
+2019-06-08 22:20:34,482 - INFO - analysis_final - X Train Shape is : (33227, 4935).
+2019-06-08 22:20:34,482 - INFO - analysis_final - X Test Shape is : (3692, 4935).
+2019-06-08 22:20:34,482 - INFO - analysis_final - Y Train Shape is : (33227,).
+2019-06-08 22:20:34,482 - INFO - analysis_final - Y Test Shape is : (3692,).
+2019-06-08 22:20:34,482 - INFO - analysis_final - Starting Learning Model
+2019-06-08 22:20:36,739 - INFO - analysis_final - XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bynode=1, colsample_bytree=1, gamma=0, learning_rate=0.05,
+       max_delta_step=0, max_depth=4, min_child_weight=1, missing=None,
+       n_estimators=100, n_jobs=1, nthread=None,
+       objective='binary:logistic', random_state=0, reg_alpha=0,
+       reg_lambda=1,
+       sample_weight=14         1.000000
+119        1.200000
+169        0.975000
+182        1.000000
+205        0.900000
+235        1.000000
+238        1.487500
+242        1.233333
+297        1.000000
+317        1.600000
+320        1.037857
+335        1.400000
+346        1.175000
+359        1.000000
+360   ....000000
+1010765    1.225000
+1010772    0.950000
+Name: sentiment_shift, Length: 36919, dtype: float64,
+       scale_pos_weight=1, seed=None, silent=None, subsample=1,
+       verbosity=1)
+2019-06-08 22:20:36,742 - INFO - analysis_final - Using Model For Predictions
+Accuracy: 61.05092091007583
+Predicted     0    1
+Actual              
+0          1506  263
+1          1175  748
+2019-06-08 22:20:36,788 - INFO - analysis_final - Flattening Clean Data
+2019-06-08 22:20:36,807 - INFO - analysis_final - Running Vectorizer on Data
+2019-06-08 22:20:37,168 - INFO - analysis_final - Vector Shape is (36919, 4935).
+2019-06-08 22:20:37,173 - INFO - analysis_final - X Train Shape is : (33227, 4935).
+2019-06-08 22:20:37,173 - INFO - analysis_final - X Test Shape is : (3692, 4935).
+2019-06-08 22:20:37,173 - INFO - analysis_final - Y Train Shape is : (33227,).
+2019-06-08 22:20:37,173 - INFO - analysis_final - Y Test Shape is : (3692,).
+2019-06-08 22:20:37,174 - INFO - analysis_final - Starting Learning Model
+2019-06-08 22:20:37,174 - INFO - analysis_final - Calculating with Weights
+............................................................................................................*..........................................................................................*........................................................................................................................................*...........................................................*....*
+optimization finished, #iter = 395375
+obj = -16877.930890, rho = 0.603723
+nSV = 18611, nBSV = 8920
+Total nSV = 18611
+................................................................................................................*.................................................................................................*............................................................................*.......*
+optimization finished, #iter = 290990
+obj = -16995.184445, rho = 0.612887
+nSV = 18774, nBSV = 8832
+Total nSV = 18774
+............................................................................................................*........................................................................................................*.....................................................................................................................................................................*........................................................................*
+optimization finished, #iter = 448845
+obj = -16974.270782, rho = 0.598695
+nSV = 18762, nBSV = 8977
+Total nSV = 18762
+....................................................................................................*..........................................................................................*..............................................................................................*.....*
+optimization finished, #iter = 289561
+obj = -16908.390879, rho = 0.628367
+nSV = 18702, nBSV = 8839
+Total nSV = 18702
+............................................................................................................*.............................................................................................*........................................................................................................................*............................*
+optimization finished, #iter = 348125
+obj = -16982.053146, rho = 0.626650
+nSV = 18785, nBSV = 8884
+Total nSV = 18785
+..............................................................................................................................................................*.....................................................................................................................................*....................................................................................................................*.....................*
+optimization finished, #iter = 427167
+obj = -21768.229252, rho = -0.646418
+nSV = 23345, nBSV = 11532
+Total nSV = 23345
+2019-06-08 22:34:52,988 - INFO - analysis_final - SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma='scale', kernel='linear',
+  max_iter=-1, probability=True, random_state=None, shrinking=True,
+  tol=0.001, verbose=3)
+2019-06-08 22:34:52,988 - INFO - analysis_final - Using Model For Predictions
+[LibSVM]Accuracy: 65.70964247020585
+Predicted     0     1
+Actual               
+0          1230   539
+1           727  1196
+2019-06-08 22:34:56,057 - INFO - analysis_final - Calculating without Weights
+......................................................................................................*..............................................................................................*................................................................................................................................*................................*
+optimization finished, #iter = 355819
+obj = -15948.145849, rho = 0.615022
+nSV = 18913, nBSV = 15278
+Total nSV = 18913
+................................................................................................*..................................................................................*..................................................................................................................................*.......................................*.*
+optimization finished, #iter = 347374
+obj = -15779.369576, rho = 0.605371
+nSV = 18739, nBSV = 15153
+Total nSV = 18739
+..........................................................................................................*....................................................................................*...........................................*.*
+optimization finished, #iter = 233488
+obj = -15763.976517, rho = 0.619192
+nSV = 18741, nBSV = 15143
+Total nSV = 18741
+....................................................................................................*.......................................................................................*................................................*...*
+optimization finished, #iter = 237517
+obj = -15907.330333, rho = 0.622989
+nSV = 18846, nBSV = 15282
+Total nSV = 18846
+...............................................................................................*.............................................................................*...........................................................................................................*......................*
+optimization finished, #iter = 300930
+obj = -15907.439374, rho = 0.627767
+nSV = 18864, nBSV = 15240
+Total nSV = 18864
+..................................................................................................................................*................................................................................................................*..............................................................................................*.....................*
+optimization finished, #iter = 357670
+obj = -20363.948323, rho = -0.648631
+nSV = 23400, nBSV = 19605
+Total nSV = 23400
+2019-06-08 22:48:12,677 - INFO - analysis_final - SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma='scale', kernel='linear',
+  max_iter=-1, probability=True, random_state=None, shrinking=True,
+  tol=0.001, verbose=3)
+2019-06-08 22:48:12,677 - INFO - analysis_final - Using Model For Predictions
+[LibSVM]Accuracy: 65.92632719393283
+Predicted     0     1
+Actual               
+0          1241   528
+1           730  1193
+----[nltk_data] Downloading package punkt to /home/marc/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package stopwords to /home/marc/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package wordnet to /home/marc/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+2019-06-08 23:20:03,456 - INFO - analysis_final - Reading 100.0 percent of the data.
+2019-06-08 23:20:08,324 - INFO - analysis_final - Data Size Read : 1010773
+2019-06-08 23:20:08,324 - INFO - analysis_final - Dropping NAs
+2019-06-08 23:20:08,845 - INFO - analysis_final - Size of Data after Dropping Nas is : 1010773
+2019-06-08 23:20:08,853 - INFO - analysis_final - Average Sentiment Shift : 0.2698177417678014
+2019-06-08 23:20:08,853 - INFO - analysis_final - Data Size : 1010773
+2019-06-08 23:20:08,853 - INFO - analysis_final - Taking only data with sentiment shift above 0
+2019-06-08 23:20:08,975 - INFO - analysis_final - Size of Higher Sentiment Shift : 1010773
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1010773/1010773 [00:11<00:00, 84907.09it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1010773/1010773 [00:32<00:00, 30874.31it/s]
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1010773/1010773 [00:06<00:00, 157417.79it/s]
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1010773/1010773 [02:33<00:00, 6577.92it/s]
+2019-06-08 23:23:35,033 - INFO - analysis_final - Flattening Clean Data
+2019-06-08 23:23:35,557 - INFO - analysis_final - Running Vectorizer on Data
+2019-06-08 23:23:45,394 - INFO - analysis_final - Vector Shape is (1010773, 42583).
+2019-06-08 23:23:45,638 - INFO - analysis_final - X Train Shape is : (909695, 42583).
+2019-06-08 23:23:45,638 - INFO - analysis_final - X Test Shape is : (101078, 42583).
+2019-06-08 23:23:45,638 - INFO - analysis_final - Y Train Shape is : (909695,).
+2019-06-08 23:23:45,638 - INFO - analysis_final - Y Test Shape is : (101078,).
+2019-06-08 23:23:45,638 - INFO - analysis_final - Starting Learning Model
+2019-06-08 23:24:58,841 - INFO - analysis_final - XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bynode=1, colsample_bytree=1, gamma=0, learning_rate=0.05,
+       max_delta_step=0, max_depth=4, min_child_weight=1, missing=None,
+       n_estimators=100, n_jobs=1, nthread=None,
+       objective='binary:logistic', random_state=0, reg_alpha=0,
+       reg_lambda=1,
+       sample_weight=0          0.000000
+1          0.159524
+2          0.800000
+3          0.193182
+4          0.000000
+5          0.425000
+6          0.275000
+7          0.208333
+8          0.585640
+9          0.503333
+10         0.125000
+11         0.200000
+12         0.000000
+13         0.896970
+14    ...00000
+1010771    0.708333
+1010772    0.950000
+Name: sentiment_shift, Length: 1010773, dtype: float64,
+       scale_pos_weight=1, seed=None, silent=None, subsample=1,
+       verbosity=1)
+2019-06-08 23:24:58,843 - INFO - analysis_final - Using Model For Predictions
+Accuracy: 60.182235501296034
+Predicted      0      1
+Actual                 
+0          44312   5995
+1          34252  16519
+(base) marc@simon:~/GIT/ist-
+
+
+
+(base) marc@simon:~/GIT/ist-736-text-mining-project$ python3 analysis_final.py 
+[nltk_data] Downloading package punkt to /home/marc/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package stopwords to /home/marc/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package wordnet to /home/marc/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+2019-06-09 01:05:20,893 - INFO - analysis_final - Reading 100.0 percent of the data.
+2019-06-09 01:05:25,788 - INFO - analysis_final - Data Size Read : 1010773
+2019-06-09 01:05:25,788 - INFO - analysis_final - Dropping NAs
+2019-06-09 01:05:26,311 - INFO - analysis_final - Size of Data after Dropping Nas is : 1010773
+2019-06-09 01:05:26,318 - INFO - analysis_final - Average Sentiment Shift : 0.2698177417678014
+2019-06-09 01:05:26,318 - INFO - analysis_final - Data Size : 1010773
+2019-06-09 01:05:26,318 - INFO - analysis_final - Taking only data with sentiment shift above 0.9
+2019-06-09 01:05:26,329 - INFO - analysis_final - Size of Higher Sentiment Shift : 36919
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 36919/36919 [00:00<00:00, 86870.73it/s]
+analysis_final.py:49: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  data['token_comment'] = data['comment'].progress_apply(text_process.tokenize_text, n_grams=1)
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 36919/36919 [00:00<00:00, 37047.25it/s]
+analysis_final.py:50: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  data['token_comment'] = data['token_comment'].progress_apply(text_process.remove_punctuation)
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 36919/36919 [00:00<00:00, 201513.61it/s]
+analysis_final.py:51: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  data['token_comment'] = data['token_comment'].progress_apply(text_process.make_lower_case)
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 36919/36919 [00:05<00:00, 6691.22it/s]
+analysis_final.py:52: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  data['token_comment'] = data['token_comment'].progress_apply(text_process.remove_stop_words)
+2019-06-09 01:05:33,859 - INFO - analysis_final - Flattening Clean Data
+2019-06-09 01:05:33,878 - INFO - analysis_final - Running Vectorizer on Data
+2019-06-09 01:05:34,232 - INFO - analysis_final - Vector Shape is (36919, 4935).
+2019-06-09 01:05:34,237 - INFO - analysis_final - X Train Shape is : (33227, 4935).
+2019-06-09 01:05:34,237 - INFO - analysis_final - X Test Shape is : (3692, 4935).
+2019-06-09 01:05:34,237 - INFO - analysis_final - Y Train Shape is : (33227,).
+2019-06-09 01:05:34,237 - INFO - analysis_final - Y Test Shape is : (3692,).
+2019-06-09 01:05:34,237 - INFO - analysis_final - Starting Learning Model
+2019-06-09 01:05:36,488 - INFO - analysis_final - XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+       colsample_bynode=1, colsample_bytree=1, gamma=0, learning_rate=0.05,
+       max_delta_step=0, max_depth=4, min_child_weight=1, missing=None,
+       n_estimators=100, n_jobs=1, nthread=None,
+       objective='binary:logistic', random_state=0, reg_alpha=0,
+       reg_lambda=1,
+       sample_weight=14         1.000000
+119        1.200000
+169        0.975000
+182        1.000000
+205        0.900000
+235        1.000000
+238        1.487500
+242        1.233333
+297        1.000000
+317        1.600000
+320        1.037857
+335        1.400000
+346        1.175000
+359        1.000000
+360   ....000000
+1010765    1.225000
+1010772    0.950000
+Name: sentiment_shift, Length: 36919, dtype: float64,
+       scale_pos_weight=1, seed=None, silent=None, subsample=1,
+       verbosity=1)
+2019-06-09 01:05:36,490 - INFO - analysis_final - Using Model For Predictions
+Accuracy: 61.05092091007583
+Predicted     0    1
+Actual              
+0          1506  263
+1          1175  748
