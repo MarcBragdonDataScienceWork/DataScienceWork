@@ -1,0 +1,10 @@
+The images are almost definitely encoded and need to be decoded from jpegs before they can be actually trained. 
+
+tensorflow has a read image file methodology. https://github.com/loicmarie/sign-language-alphabet-recognizer/blob/master/train.py which is implemented here and needs to be explored. 
+
+
+Cropping the image or resizing them creates a distortion. cutting them to 95x95 is likely too small for some of the images and it seems to greatly affect accuracy. 
+
+there is a method called squeeze and bottleneck in tensorflow and numpy that is used to reduce the affects of the distortion. 
+
+The drop out rate is probably too high and the size of the neural net is too small for the complexity of the images. ALSO read_images needs to be reworked because it gets an out of memory error when you try to run all the images. 
