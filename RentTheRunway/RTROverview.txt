@@ -1,0 +1,1 @@
+The analysisfinal.r file contains all the analysis methods used and discussed in the final project paper. The data file was not included as it was too large but could be furnished if required. Also included are image forms of the graphs included in the paper. 

@@ -1,0 +1,4 @@
+The sign language project has a src direction that contains all the analysis methods used to train the model note, those files with a .py extension were my own work wheras the .ipynb notebook files were done by my groupmates. It requires tensorflow, numpy, keras, seaborn and matplotlib to run asl_cnn.py which was my main contribution to the project. I did not include the images are they are larger than 4 GB but the model folder has the trained model in it. 
+
+
+Read_webcam.py is a utility that requires cv2 numpy keras and pil and when running can use the trained model to predict input from the webcam in realtime. 
